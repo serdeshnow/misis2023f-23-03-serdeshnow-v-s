@@ -10,16 +10,16 @@ int main() {
 		int d = 0;
 		std::cin >> a >> b >> c >> d;
 		int count = 0;
-		if (a > b) {
+		if (a < b) {
 			count++;
 		}
-		if (a > c) {
+		if (a < c) {
 			count++;
 		}
-		if (a > c) {
+		if (a < d) {
 			count++;
 		}
-		std::cout << count;
+		std::cout << count << std::endl;
 	}
 	return 0;
 }
