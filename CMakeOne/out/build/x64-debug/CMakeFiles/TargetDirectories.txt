@@ -1,3 +1,0 @@
-C:/Users/vserd/source/repos/misis2023f-23-03-serdeshnow-v-s/CMakeOne/out/build/x64-debug/CMakeFiles/CMakeOne.dir
-C:/Users/vserd/source/repos/misis2023f-23-03-serdeshnow-v-s/CMakeOne/out/build/x64-debug/CMakeFiles/edit_cache.dir
-C:/Users/vserd/source/repos/misis2023f-23-03-serdeshnow-v-s/CMakeOne/out/build/x64-debug/CMakeFiles/rebuild_cache.dir
