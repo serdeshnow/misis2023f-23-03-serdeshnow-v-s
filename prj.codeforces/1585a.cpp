@@ -1,10 +1,8 @@
 #include <iostream>
-//#include <vector>
 
 int main() {
 	int t = 0;
 	std::cin >> t;
-	//std::vector <int> result;
 	while (t != 0) {
 		int hight = 1;
 		int n = 0;

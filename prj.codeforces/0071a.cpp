@@ -1,4 +1,3 @@
-//71a
 #include <iostream>
 #include <string>
 

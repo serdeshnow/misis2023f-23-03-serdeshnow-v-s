@@ -1,8 +1,8 @@
-//915A
 #include <iostream>
  
 int main() {
-	int n = 0, k = 0;
+	int n = 0;
+	int k = 0;
 	std::cin >> n >> k;
 	int min_hours = 100000;
 	while (n--) {
