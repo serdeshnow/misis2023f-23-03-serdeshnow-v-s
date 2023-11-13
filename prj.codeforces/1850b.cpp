@@ -13,11 +13,11 @@ int main() {
 			int b = 0;
 			std::cin >> a >> b;
 			if (a <= 10 && max_score < b) {
+				winner = i + 1;
 				max_score = b;
-				winner = a;
 			}
 		}
-		std::cout << winner;
+		std::cout << winner << std::endl;
 	}
 	return 0;
 }
