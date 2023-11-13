@@ -24,6 +24,7 @@ int main() {
 			}
 		}
 
+
 		int count = 0;
 		for (int k = 0; k < arr.size(); k++) {
 			if (arr[k] != -1) {
