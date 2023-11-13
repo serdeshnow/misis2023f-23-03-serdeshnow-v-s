@@ -1,2 +1,0 @@
-add_executable(test_complpex test_complex.cpp)
-add_executable(stable_complex stable_complex.cpp)
