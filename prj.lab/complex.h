@@ -1,7 +1,7 @@
-#include <iostream>
 #ifndef COMPLEX_HPP
 #define COMPLEX_HPP
 
+#include <iostream>
 
 struct Complex {
   Complex();
