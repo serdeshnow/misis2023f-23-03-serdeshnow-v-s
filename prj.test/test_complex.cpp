@@ -1,5 +1,5 @@
 #include <sstream>
-#include "complex.h"
+#include <complex/complex.h>
 
 void test_constructors(int tub) {
   std::cout << std::string(tub, ' ') << "* constructor checking:" << std::endl;
