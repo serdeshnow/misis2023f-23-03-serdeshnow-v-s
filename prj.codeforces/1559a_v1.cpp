@@ -2,12 +2,13 @@
 #include <vector>
 
 int main() {
-  int t = 0;
+  int t = 2;
   std::cin >> t;
   while (t--) {
-    int n = 0;
+    int n = 2;
+    std::cin >> n;
     std::vector <int> arr;
-    for (int index = 0; index < n; index++) {
+    for (int index = 0; index < n; ++index) {
       int a = 0;
       std::cin >> a;
       arr.push_back(a);
@@ -32,11 +33,20 @@ int main() {
     }
     std::cout << maxi;
     */
-    int maxi = 0;
-    for (int j = 0; j < arr.size(); j++) {
-      maxi = std::max(arr[j], maxi);
+
+    for (int i = 0; i < ((arr.size() + 1) / 2); ++i) {
+      int bit_mult_1 = arr[i] & arr[arr.size() - i - 1];
+      int bit_mult_2 = arr[arr.size() - i - 1] & arr[i];
+      arr[i] = bit_mult_1;
+      arr[arr.size() - i - 1] = bit_mult_2;
     }
-    std::cout << maxi;
+
+    int maxi = 0;
+    for (int j = 0; j < arr.size(); ++j) {
+      maxi = std::max(arr[j], maxi);
+
+    }
+    std::cout << maxi << std::endl;
 
   }
   return 0;
