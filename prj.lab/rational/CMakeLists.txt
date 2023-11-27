@@ -1,1 +1,1 @@
-add_executable(rational rational.cpp)
+add_library(rational rational.cpp rational.h)
