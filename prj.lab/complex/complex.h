@@ -1,48 +1,67 @@
-#ifndef COMPLEX_HPP
-#define COMPLEX_HPP
-
+#ifndef COMPLEX_H
+#define COMPLEX_H
 #include <iostream>
+#include <sstream>
+#include <limits>
 
-struct Complex {
-  Complex();
-  explicit Complex(const double real);
-  Complex(const double real, const double imaginary);
-  Complex(const Complex& rhs);
+struct Complex{
+    Complex() = default;
 
-  Complex& operator= (const Complex& rhs);
-  Complex& operator= (const double& rhs);
-  Complex& operator+= (const Complex& rhs);
-  Complex& operator+= (const double& rhs);
-  Complex& operator-= (const Complex& rhs);
-  Complex& operator-= (const double& rhs);
-  Complex& operator*= (const Complex& rhs);
-  Complex& operator*= (const double& rhs);
-  Complex& operator/= (const Complex& rhs);
-  Complex& operator/= (const double& rhs);
+    explicit Complex(const double real) : re(real), im(0.0) {}
 
-  Complex operator+ (const Complex& rhs) const;
-  Complex operator+ (const double& rhs) const;
-  Complex operator- (const Complex& rhs) const;
-  Complex operator- (const double& rhs) const;
-  Complex operator* (const Complex& rhs) const;
-  Complex operator* (const double& rhs) const;
-  Complex operator/ (const Complex& rhs) const;
-  Complex operator/ (const double& rhs) const;
+    Complex(const double real, const double imaginary) : re(real), im(imaginary) {}
 
-  bool operator== (const Complex& rhs) const;
-  bool operator== (const double& rhs) const;
-  bool operator!= (const Complex& rhs) const;
-  bool operator!= (const double& rhs) const;
+    double eps = 2 * std::numeric_limits<double>::epsilon();
+    bool operator==(const Complex& rhs) const {return (std::abs(re - rhs.re) < eps) && (std::abs(im - rhs.im) < eps);}
+    bool operator!=(const Complex& rhs) const {return !operator==(rhs);}
 
-  void conjugate();
+    Complex& operator+=(const Complex& rhs);
+    Complex& operator+=(const double rhs) {return operator+=(Complex(rhs));}
 
-  double real_ = 0;
-  double imaginary_ = 0;
-  static const char leftBrace{ '(' };
-  static const char separator{ ',' };
-  static const char rightBrace{ ')' };
+    Complex& operator-=(const Complex& rhs);
+    Complex& operator-=(const double rhs) {return operator-=(Complex(rhs));}
+
+    Complex& operator*=(const Complex& rhs);
+    Complex& operator*=(const double rhs) {return operator*=(Complex(rhs));}
+
+    Complex& operator/=(const Complex& rhs);
+    Complex& operator/=(const double rhs) {return operator/=(Complex(rhs));}
+
+    std::ostream& writeTo(std::ostream& ostrm) const;
+    std::istream& readFrom(std::istream& istrm);
+
+    double re{0.0};
+    double im{0.0};
+
+    static const char leftBrace{'{'};
+    static const char separator{','};
+    static const char rightBrace{'}'};
 };
-std::istream& operator>> (std::istream& stream, Complex& val);
-std::ostream& operator<< (std::ostream& stream, const Complex val);
+
+inline std::ostream& operator<<(std::ostream& ostrm, const Complex& rhs){
+    return rhs.writeTo(ostrm);
+}
+
+inline std::istream& operator>>(std::istream& istrm, Complex& rhs){
+    return rhs.readFrom(istrm);
+}
+
+Complex operator+(const Complex& lhs, const Complex& rhs);
+Complex operator+(const Complex& lhs, const double& rhs);
+Complex operator+(const double& lhs, const Complex& rhs);
+
+Complex operator-(const Complex& lhs, const Complex& rhs);
+Complex operator-(const Complex& lhs, const double& rhs);
+Complex operator-(const double& lhs, const Complex& rhs);
+
+Complex operator*(const Complex& lhs, const Complex& rhs);
+Complex operator*(const Complex& lhs, const double& rhs);
+Complex operator*(const double& lhs, const Complex& rhs);
+
+
+Complex operator/(const Complex& lhs, const Complex& rhs);
+Complex operator/(const Complex& lhs, const double& rhs);
+Complex operator/(const double& lhs, const Complex& rhs);
+
 
 #endif
