@@ -5,7 +5,7 @@
 class Rational {
 public:
   Rational() = default; // если ничего не получили (значение по умолчанию)
-  Rational(int num) : num_(num) {} // если на вход получили только 1 число
+  explicit Rational(int num) : num_(num) {} // если на вход получили только 1 число // explicit
   Rational(int num, int din) : num_(num), din_(din) {} // если на вход получили 2 числа
   ~Rational() = default; // деструктор
   Rational(const Rational& rhs) = default; // получили на вход только  Rational A(1, 2) -> Rational B(A)
@@ -31,18 +31,20 @@ public:
   bool operator<(const int rhs) const { return operator<=(rhs) && !operator==(rhs); }
 
   // ќператоры арифметические:
-  Rational& operator+=(const Rational& rhs); // объ€вление оператора
+  Rational& operator+=(const Rational& rhs); // объ€вление оператора +=
   Rational& operator+=(const int rhs) { return operator+=(Rational(rhs)); } // объ€вление и определение
 
-  Rational& operator-=(const Rational& rhs);
+  Rational& operator-=(const Rational& rhs); // оператор -=
   Rational& operator-=(const int rhs) { return operator-=(Rational(rhs)); }
 
-  Rational& operator*=(const Rational& rhs);
-  Rational& operator*=(const int rhs) { return operator*=(Rational(rhs)); }
+  Rational& operator*=(const Rational& rhs); // оператор *=
+  Rational& operator*=(const int rhs) { return operator*=(Rational(rhs)); } 
 
-  Rational& operator/=(const Rational& rhs);
+  Rational& operator/=(const Rational& rhs); // оператор /=
   Rational& operator/=(const int rhs) { return operator/=(Rational(rhs)); }
 
+  std::istream& input(std::istream& read); // чтение дл€ ѕ , сами мы записываем  значение
+  std::ostream& output(std::ostream& write); // вывод значений с ѕ , мы читаем то, что он вывел
 
 
 private:
@@ -73,32 +75,98 @@ private:
 
 };
 
-Rational& Rational::operator+=(const Rational& rhs) {
+Rational& Rational::operator+=(const Rational& rhs) { // определение оператора +=
   num_ = num_ * rhs.din_ + din_ * rhs.num_;
   din_ = din_ * rhs.din_;
   fix();
   return *this;
 }
 
-Rational& Rational::operator-=(const Rational& rhs) {
+Rational& Rational::operator-=(const Rational& rhs) { // определение оператора -=
   num_ = num_ * rhs.din_ - din_ * rhs.num_;
   din_ = din_ * rhs.din_;
   fix();
   return *this;
 }
 
-Rational& Rational::operator*=(const Rational& rhs) {
+Rational& Rational::operator*=(const Rational& rhs) { // определение оператора *=
   num_ = num_ * rhs.num_;
   din_ = din_ * rhs.din_;
   fix();
   return *this;
 }
 
-Rational& Rational::operator/=(const Rational& rhs) {
+Rational& Rational::operator/=(const Rational& rhs) { // определение оператора /=
   num_ = num_ * rhs.din_;
   din_ = din_ * rhs.num_;
   fix();
   return *this;
 }
 
+Rational operator+(const Rational& lhs, const Rational& rhs) { // оператор +
+  Rational result(lhs);
+  result += rhs;
+  return result;
+}
+Rational operator+(const Rational& lhs, const int rhs) {
+  Rational result(lhs);
+  result += rhs;
+  return result;
+}
+Rational operator+(const int lhs, const Rational& rhs) {
+  Rational result(lhs);
+  result += rhs;
+  return result;
+}
+
+Rational operator-(const Rational& lhs, const Rational& rhs) { // оператор -
+  Rational result(lhs);
+  result += rhs;
+  return result;
+}
+Rational operator-(const Rational& lhs, const int rhs) {
+  Rational result(lhs);
+  result += rhs;
+  return result;
+}
+Rational operator-(const int lhs, const Rational& rhs) {
+  Rational result(lhs);
+  result += rhs;
+  return result;
+}
+
+Rational operator*(const Rational& lhs, const Rational& rhs) { // оператор *
+  Rational result(lhs);
+  result *= rhs;
+  return result;
+}
+Rational operator*(const Rational& lhs, const int rhs) {
+  Rational result(lhs);
+  result *= rhs;
+  return result;
+}
+Rational operator*(const int lhs, const Rational& rhs) {
+  Rational result(lhs);
+  result *= rhs;
+  return result;
+}
+
+Rational operator/(const Rational& lhs, const Rational& rhs) { // оператор /
+  Rational result(lhs);
+  result /= rhs;
+  return result;
+}
+Rational operator/(const Rational& lhs, const int rhs) {
+  Rational result(lhs);
+  result /= rhs;
+  return result;
+}
+Rational operator/(const int lhs, const Rational& rhs) {
+  Rational result(lhs);
+  result /= rhs;
+  return result;
+}
+
+std::istream& operator>>(std::istream& stream, Rational &rhs) { return rhs.input(stream); }
+std::ostream& operator<<(std::ostream& stream, Rational &rhs) { return rhs.output(stream); }
 
