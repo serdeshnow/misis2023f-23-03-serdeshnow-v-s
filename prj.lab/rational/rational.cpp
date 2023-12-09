@@ -202,10 +202,3 @@ std::ostream& Rational::output(std::ostream& write) const {
 std::istream& operator>>(std::istream& stream, Rational &rhs) { return rhs.input(stream); }
 std::ostream& operator<<(std::ostream& stream, Rational &rhs) { return rhs.output(stream); }
 */
-
-int main() {
-  Rational a(22, 6);
-  Rational b(14, 6);
-  Rational c = a + b;
-  std::cout << c;
-}
