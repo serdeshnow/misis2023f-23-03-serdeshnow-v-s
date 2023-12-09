@@ -44,12 +44,13 @@ public:
   Rational& operator/=(const int rhs) { return operator/=(Rational(rhs)); }
 
   std::istream& input(std::istream& read); // чтение для ПК, сами мы записываем  значение
-  std::ostream& output(std::ostream& write); // вывод значений с ПК, мы читаем то, что он вывел
+  std::ostream& output(std::ostream& write) const; // вывод значений с ПК, мы читаем то, что он вывел
 
 
 private:
   int num_ = 0; // числитель 
   int din_ = 1; // знаменатель
+  char separator = '/'; // сепаратор 
 
   int gcd(int a, int b) { // НОД, китайская теорема об остатках
     if (a * b == 0) {
@@ -72,6 +73,7 @@ private:
     din_ /= nod;
     num_ = (is_positive ? num_ : -num_);
   }
+  
 
 };
 
@@ -167,6 +169,38 @@ Rational operator/(const int lhs, const Rational& rhs) {
   return result;
 }
 
+std::istream& Rational::input(std::istream& read) {
+  int64_t num(0);
+  char sep(0);
+  int64_t din(0);
+  read >> num >> sep >> din;
+  if (read.good()) {
+    if (sep == separator) {
+      num_ = num;
+      din_ = din;
+    }
+    else {
+      read.setstate(std::ios_base::failbit);
+    }
+  }
+  if (din_ == 0) {
+    throw std::runtime_error("Division by zero!");
+  }
+  else {
+    return read;
+  }
+}
+
+std::ostream& Rational::output(std::ostream& write) const {
+  write << num_ << separator << din_;
+  return write;
+}
+
 std::istream& operator>>(std::istream& stream, Rational &rhs) { return rhs.input(stream); }
 std::ostream& operator<<(std::ostream& stream, Rational &rhs) { return rhs.output(stream); }
 
+
+int main() {
+  Rational a(22, 5);
+  std::cout << a;
+}
