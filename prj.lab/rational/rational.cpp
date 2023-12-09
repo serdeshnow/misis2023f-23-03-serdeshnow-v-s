@@ -1,3 +1,5 @@
+#include "rational.h"
+/*
 #include <iostream>
 #include <string>
 #include <cstdint>
@@ -76,7 +78,7 @@ private:
   
 
 };
-
+*/
 Rational& Rational::operator+=(const Rational& rhs) { // определение оператора +=
   num_ = num_ * rhs.din_ + din_ * rhs.num_;
   din_ = din_ * rhs.din_;
@@ -123,17 +125,17 @@ Rational operator+(const int lhs, const Rational& rhs) {
 
 Rational operator-(const Rational& lhs, const Rational& rhs) { // оператор -
   Rational result(lhs);
-  result += rhs;
+  result -= rhs;
   return result;
 }
 Rational operator-(const Rational& lhs, const int rhs) {
   Rational result(lhs);
-  result += rhs;
+  result -= rhs;
   return result;
 }
 Rational operator-(const int lhs, const Rational& rhs) {
   Rational result(lhs);
-  result += rhs;
+  result -= rhs;
   return result;
 }
 
@@ -196,9 +198,10 @@ std::ostream& Rational::output(std::ostream& write) const {
   return write;
 }
 
+/*
 std::istream& operator>>(std::istream& stream, Rational &rhs) { return rhs.input(stream); }
 std::ostream& operator<<(std::ostream& stream, Rational &rhs) { return rhs.output(stream); }
-
+*/
 
 int main() {
   Rational a(22, 6);

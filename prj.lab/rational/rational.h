@@ -1,5 +1,5 @@
-#ifndef 
-#define 
+#ifndef RATIONAL_LIB_HPP
+#define RATIONAL_LIB_HPP
 #include <iostream>
 #include <cstdint>
 
@@ -78,6 +78,7 @@ private:
 
 };
 
-
+std::istream& operator>>(std::istream& stream, Rational& rhs) { return rhs.input(stream); }
+std::ostream& operator<<(std::ostream& stream, Rational& rhs) { return rhs.output(stream); }
 
 #endif
