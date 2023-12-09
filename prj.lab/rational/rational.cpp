@@ -6,7 +6,7 @@ class Rational {
 public:
   Rational() = default; // если ничего не получили (значение по умолчанию)
   explicit Rational(int num) : num_(num) {} // если на вход получили только 1 число // explicit
-  Rational(int num, int din) : num_(num), din_(din) {} // если на вход получили 2 числа
+  Rational(int num, int din) : num_(num), din_(din) { fix(); } // если на вход получили 2 числа
   ~Rational() = default; // деструктор
   Rational(const Rational& rhs) = default; // получили на вход только  Rational A(1, 2) -> Rational B(A)
   Rational& operator=(const Rational& rhs) { num_ = rhs.num_; din_ = rhs.din_; return *this; } // оператор присваивания
@@ -201,6 +201,8 @@ std::ostream& operator<<(std::ostream& stream, Rational &rhs) { return rhs.outpu
 
 
 int main() {
-  Rational a(22, 5);
-  std::cout << a;
+  Rational a(22, 6);
+  Rational b(14, 6);
+  Rational c = a + b;
+  std::cout << c;
 }
