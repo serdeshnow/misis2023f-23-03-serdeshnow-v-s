@@ -3,9 +3,8 @@
 
 
 int main() {
-  Rational a(22, 6);
-  int b = 1;
+  Rational a(24, 6);
+  int b = 4;
   //Rational c = a + b;
-  std::cout << a;
   return 0;
 }
