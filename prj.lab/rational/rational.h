@@ -13,6 +13,10 @@ public:
   Rational(const Rational& rhs) = default; // получили на вход только  Rational A(1, 2) -> Rational B(A)
   Rational& operator=(const Rational& rhs) { num_ = rhs.num_; din_ = rhs.din_; return *this; } // оператор присваивани€
 
+  int_64t num() const { return num_(); }
+  int_64t den() const { return den_(); }
+
+
   // ќператоры сравнени€ (логическе):
   bool operator==(const Rational& rhs) const { return num_ * rhs.din_ == rhs.num_ * din_; } // оператор ==
   bool operator==(const int rhs) const { return num_ * 1 == rhs * din_; }

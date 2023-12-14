@@ -1,29 +1,29 @@
 #include "rational.h"
 
 Rational& Rational::operator+=(const Rational& rhs) { // определение оператора +=
-  num_ = num_ * rhs.din_ + din_ * rhs.num_;
-  din_ = din_ * rhs.din_;
+  num_ = num_ * rhs.den_ + den_ * rhs.num_;
+  den_ = den_ * rhs.den_;
   fix();
   return *this;
 }
 
 Rational& Rational::operator-=(const Rational& rhs) { // определение оператора -=
-  num_ = num_ * rhs.din_ - din_ * rhs.num_;
-  din_ = din_ * rhs.din_;
+  num_ = num_ * rhs.den_ - den_ * rhs.num_;
+  den_ = den_ * rhs.den_;
   fix();
   return *this;
 }
 
 Rational& Rational::operator*=(const Rational& rhs) { // определение оператора *=
   num_ = num_ * rhs.num_;
-  din_ = din_ * rhs.din_;
+  den_ = den_ * rhs.den_;
   fix();
   return *this;
 }
 
 Rational& Rational::operator/=(const Rational& rhs) { // определение оператора /=
-  num_ = num_ * rhs.din_;
-  din_ = din_ * rhs.num_;
+  num_ = num_ * rhs.den_;
+  den_ = den_ * rhs.num_;
   fix();
   return *this;
 }
@@ -95,18 +95,18 @@ Rational operator/(const int lhs, const Rational& rhs) {
 std::istream& Rational::input(std::istream& read) {
   int64_t num(0); // инициализация при объявлении
   char sep(0);
-  int64_t din(0);
-  read >> num >> sep >> din;
+  int64_t den(0);
+  read >> num >> sep >> den;
   if (read.good()) {
     if (sep == separator) {
       num_ = num;
-      din_ = din;
+      den_ = den;
     }
     else {
       read.setstate(std::ios_base::failbit);
     }
   }
-  if (din_ == 0) {
+  if (den_ == 0) {
     throw std::runtime_error("Division by zero!"); /// вызов исключения
   }
   else {
@@ -115,6 +115,6 @@ std::istream& Rational::input(std::istream& read) {
 }
 
 std::ostream& Rational::output(std::ostream& write) const {
-  write << num_ << separator << din_;
+  write << num_ << separator << den_;
   return write;
 }
