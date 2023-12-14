@@ -1,13 +1,14 @@
 #ifndef RATIONAL_LIB_HPP
 #define RATIONAL_LIB_HPP
-#include <iostream>
 #include <cstdint>
+#include <iosfwd>
+
 
 class Rational {
 public:
-  Rational() = default; // если ничего не получили (значение по умолчанию)
-  explicit Rational(int num) : num_(num) {} // если на вход получили только 1 число // explicit
+  Rational() = default; /// если ничего не получили (значение по умолчанию)
   Rational(int num, int din) : num_(num), din_(din) { fix(); } // если на вход получили 2 числа
+  explicit Rational(int num) : Rational{ num, 1 } {} // если на вход получили только 1 число // explicit + cпособ обойти константность полей (direct initialization)
   ~Rational() = default; // деструктор
   Rational(const Rational& rhs) = default; // получили на вход только  Rational A(1, 2) -> Rational B(A)
   Rational& operator=(const Rational& rhs) { num_ = rhs.num_; din_ = rhs.din_; return *this; } // оператор присваивани€
@@ -46,7 +47,6 @@ public:
 
   std::istream& input(std::istream& read); // чтение дл€ ѕ , сами мы записываем  значение
   std::ostream& output(std::ostream& write) const; // вывод значений с ѕ , мы читаем то, что он вывел
-
 
 private:
   int num_ = 0; // числитель 

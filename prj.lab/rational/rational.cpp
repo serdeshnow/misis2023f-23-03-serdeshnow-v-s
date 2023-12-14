@@ -93,7 +93,7 @@ Rational operator/(const int lhs, const Rational& rhs) {
 }
 
 std::istream& Rational::input(std::istream& read) {
-  int64_t num(0);
+  int64_t num(0); // инициализация при объявлении
   char sep(0);
   int64_t din(0);
   read >> num >> sep >> din;
@@ -107,7 +107,7 @@ std::istream& Rational::input(std::istream& read) {
     }
   }
   if (din_ == 0) {
-    throw std::runtime_error("Division by zero!");
+    throw std::runtime_error("Division by zero!"); /// вызов исключения
   }
   else {
     return read;
