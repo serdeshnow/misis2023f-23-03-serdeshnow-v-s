@@ -1,5 +1,6 @@
 #include "rational.h"
 
+
 Rational& Rational::operator+=(const Rational& rhs) { /// определение оператора +=
   num_ = num_ * rhs.den_ + den_ * rhs.num_;
   den_ = den_ * rhs.den_;

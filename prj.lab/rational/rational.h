@@ -1,7 +1,8 @@
 #ifndef RATIONAL_LIB_HPP
 #define RATIONAL_LIB_HPP
 #include <cstdint>
-#include <iosfwd>
+#include <iostream>
+#include <stdexcept>
 
 
 class Rational {
